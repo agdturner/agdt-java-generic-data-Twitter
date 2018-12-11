@@ -35,9 +35,9 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.nodes.Node;
 import org.jsoup.select.Elements;
-import uk.ac.leeds.ccg.andyt.generic.io.Generic_ReadCSV;
-import uk.ac.leeds.ccg.andyt.generic.io.Generic_StaticIO;
-import uk.ac.leeds.ccg.andyt.generic.lang.Generic_StaticString;
+import uk.ac.leeds.ccg.andyt.data.format.Generic_ReadCSV;
+import uk.ac.leeds.ccg.andyt.generic.io.Generic_IO;
+import uk.ac.leeds.ccg.andyt.generic.lang.Generic_String;
 
 /**
  *
@@ -69,11 +69,11 @@ public class Harriet {
         inputFile = new File(inputDataDir, "LCC.csv");
         outputFile = new File(outputDataDir, "LCCout.csv");
         ArrayList<String> lines;
-        //lines = Generic_StaticIO.readIntoArrayList_String(inputFile, 0);
+        //lines = Generic_IO.readIntoArrayList_String(inputFile, 0);
         lines = Generic_ReadCSV.read(inputFile, outputDataDir, 7);
 
         PrintWriter pw;
-        pw = Generic_StaticIO.getPrintWriter(outputFile, false);
+        pw = Generic_IO.getPrintWriter(outputFile, false);
 
         File f;
         Iterator<String> ite;
@@ -339,7 +339,7 @@ public class Harriet {
         ArrayList<String> result = new ArrayList<>();
         URL url = null;
         PrintWriter pw;
-        pw = Generic_StaticIO.getPrintWriter(fileToStore, false);
+        pw = Generic_IO.getPrintWriter(fileToStore, false);
         HttpURLConnection httpURLConnection = null;
         BufferedReader br = null;
         String line = null;

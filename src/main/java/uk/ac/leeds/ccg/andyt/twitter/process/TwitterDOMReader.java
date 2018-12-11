@@ -19,7 +19,7 @@ import java.io.File;
 import java.util.TreeSet;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-import uk.ac.leeds.ccg.andyt.generic.io.Generic_XMLDOMReader;
+import uk.ac.leeds.ccg.andyt.data.format.Generic_XMLDOMReader;
 
 public class TwitterDOMReader extends Generic_XMLDOMReader {
     
