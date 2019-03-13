@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>uk.ac.leeds.ccg.andyt</groupId>
     <artifactId>agdt-java-generic-data-Twitter</artifactId>
-    <version>0.1-SNAPSHOT</version>
+    <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
     
     <name>agdt-java-generic-data-Twitter</name>
@@ -40,11 +40,11 @@
     
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
-        <agdt-java-generic.version>1.0.0</agdt-java-generic.version>
-        <agdt-java-generic-web.version>0.1-SNAPSHOT</agdt-java-generic-web.version>
-        <agdt-java-generic-data.version>0.1-SNAPSHOT</agdt-java-generic-data.version>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+        <agdt-java-generic.version>1.0-SNAPSHOT</agdt-java-generic.version>
+        <agdt-java-generic-web.version>1.0-SNAPSHOT</agdt-java-generic-web.version>
+        <agdt-java-generic-data.version>1.0-SNAPSHOT</agdt-java-generic-data.version>
     </properties>
     
     <dependencies>
