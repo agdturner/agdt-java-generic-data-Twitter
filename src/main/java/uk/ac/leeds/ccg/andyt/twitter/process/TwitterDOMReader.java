@@ -19,9 +19,9 @@ import java.io.File;
 import java.util.TreeSet;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-import uk.ac.leeds.ccg.andyt.data.format.Generic_XMLDOMReader;
+import uk.ac.leeds.ccg.andyt.data.format.Data_ReadXML;
 
-public class TwitterDOMReader extends Generic_XMLDOMReader {
+public class TwitterDOMReader extends Data_ReadXML {
     
 
     protected TwitterDOMReader(File f) {

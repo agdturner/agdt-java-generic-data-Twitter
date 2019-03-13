@@ -40,7 +40,7 @@ import twitter4j.TwitterFactory;
 import twitter4j.TwitterStream;
 import twitter4j.TwitterStreamFactory;
 import twitter4j.conf.ConfigurationBuilder;
-import uk.ac.leeds.ccg.andyt.data.format.Generic_ReadCSV;
+import uk.ac.leeds.ccg.andyt.data.format.Data_ReadCSV;
 import uk.ac.leeds.ccg.andyt.generic.io.Generic_IO;
 
 public class Test implements StatusListener {
@@ -82,7 +82,7 @@ public class Test implements StatusListener {
         d = new File(d, "twitter");
         d = new File(d, "config");
         File f = new File(d, "twitter4j.properties");
-        ArrayList<String> lines = Generic_ReadCSV.read(f, f.getParentFile(), 7);
+        ArrayList<String> lines = Data_ReadCSV.read(f, f.getParentFile(), 7);
         Iterator<String> ite;
         ite = lines.iterator();
         String consumerKey = ite.next().replace("oauth.consumerKey", "");
