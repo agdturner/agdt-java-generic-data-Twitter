@@ -36,28 +36,27 @@ import org.jsoup.nodes.Element;
 import org.jsoup.nodes.Node;
 import org.jsoup.select.Elements;
 import uk.ac.leeds.ccg.andyt.data.format.Data_ReadCSV;
-import uk.ac.leeds.ccg.andyt.generic.io.Generic_IO;
-import uk.ac.leeds.ccg.andyt.generic.lang.Generic_String;
+import uk.ac.leeds.ccg.andyt.twitter.core.Twitter_Environment;
+import uk.ac.leeds.ccg.andyt.twitter.core.Twitter_Object;
 
 /**
  *
  * @author geoagdt
  */
-public class Harriet {
+public class Harriet extends Twitter_Object {
 
-    Harriet() {
+    public Harriet(Twitter_Environment e) {
+        super (e);
     }
 
     public static void main(String[] args) {
-        new Harriet().run();
+        new Harriet(new Twitter_Environment()).run();
     }
 
     public void run() {
         File dataDir;
 //        dataDir = new File("M:/teaching/GEOG3600 Dissertation/2017-2018/Harriet Jack/data");
-        dataDir = new File(
-                System.getProperty("user.dir"),
-                "data/");
+        dataDir = new File( System.getProperty("user.dir"), "data/");
         File inputDataDir;
 //        inputDataDir = new File(dataDir, "input");
         inputDataDir = new File(dataDir, "input/twitter");
@@ -72,8 +71,7 @@ public class Harriet {
         //lines = Generic_IO.readIntoArrayList_String(inputFile, 0);
         lines = Data_ReadCSV.read(inputFile, outputDataDir, 7);
 
-        PrintWriter pw;
-        pw = Generic_IO.getPrintWriter(outputFile, false);
+        PrintWriter pw  = env.io.getPrintWriter(outputFile, false);
 
         File f;
         Iterator<String> ite;
@@ -339,7 +337,7 @@ public class Harriet {
         ArrayList<String> result = new ArrayList<>();
         URL url = null;
         PrintWriter pw;
-        pw = Generic_IO.getPrintWriter(fileToStore, false);
+        pw = env.io.getPrintWriter(fileToStore, false);
         HttpURLConnection httpURLConnection = null;
         BufferedReader br = null;
         String line = null;
