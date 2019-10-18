@@ -50,7 +50,11 @@ public class Harriet extends Twitter_Object {
     }
 
     public static void main(String[] args) {
-        new Harriet(new Twitter_Environment()).run();
+        try {
+            new Harriet(new Twitter_Environment()).run();
+        } catch (IOException ex) {
+            ex.printStackTrace(System.err);
+        }
     }
 
     public void run() {
@@ -71,7 +75,7 @@ public class Harriet extends Twitter_Object {
         //lines = Generic_IO.readIntoArrayList_String(inputFile, 0);
         lines = Data_ReadCSV.read(inputFile, outputDataDir, 7);
 
-        PrintWriter pw  = env.io.getPrintWriter(outputFile, false);
+        PrintWriter pw  = env.env.io.getPrintWriter(outputFile, false);
 
         File f;
         Iterator<String> ite;
@@ -337,7 +341,7 @@ public class Harriet extends Twitter_Object {
         ArrayList<String> result = new ArrayList<>();
         URL url = null;
         PrintWriter pw;
-        pw = env.io.getPrintWriter(fileToStore, false);
+        pw = env.env.io.getPrintWriter(fileToStore, false);
         HttpURLConnection httpURLConnection = null;
         BufferedReader br = null;
         String line = null;

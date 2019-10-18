@@ -15,14 +15,19 @@
  */
 package uk.ac.leeds.ccg.andyt.twitter.core;
 
+import java.io.IOException;
 import uk.ac.leeds.ccg.andyt.generic.core.Generic_Environment;
 
 /**
  *
  * @author geoagdt
  */
-public class Twitter_Environment extends Generic_Environment {
+public class Twitter_Environment {
     
-    public Twitter_Environment(){}
+    public transient Generic_Environment env;
+    
+    public Twitter_Environment() throws IOException {
+        env = new Generic_Environment();
+    }
     
 }
