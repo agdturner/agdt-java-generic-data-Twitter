@@ -35,7 +35,8 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.nodes.Node;
 import org.jsoup.select.Elements;
-import uk.ac.leeds.ccg.andyt.data.format.Data_ReadCSV;
+import uk.ac.leeds.ccg.andyt.data.core.Data_Environment;
+import uk.ac.leeds.ccg.andyt.data.format.Data_ReadTXT;
 import uk.ac.leeds.ccg.andyt.twitter.core.Twitter_Environment;
 import uk.ac.leeds.ccg.andyt.twitter.core.Twitter_Object;
 
@@ -45,22 +46,24 @@ import uk.ac.leeds.ccg.andyt.twitter.core.Twitter_Object;
  */
 public class Harriet extends Twitter_Object {
 
+    Data_ReadTXT reader;
+
     public Harriet(Twitter_Environment e) {
-        super (e);
+        super(e);
     }
 
     public static void main(String[] args) {
         try {
-            new Harriet(new Twitter_Environment()).run();
+            new Harriet(new Twitter_Environment(new Data_Environment())).run();
         } catch (IOException ex) {
             ex.printStackTrace(System.err);
         }
     }
 
-    public void run() {
+    public void run() throws IOException {
         File dataDir;
 //        dataDir = new File("M:/teaching/GEOG3600 Dissertation/2017-2018/Harriet Jack/data");
-        dataDir = new File( System.getProperty("user.dir"), "data/");
+        dataDir = new File(System.getProperty("user.dir"), "data/");
         File inputDataDir;
 //        inputDataDir = new File(dataDir, "input");
         inputDataDir = new File(dataDir, "input/twitter");
@@ -73,9 +76,10 @@ public class Harriet extends Twitter_Object {
         outputFile = new File(outputDataDir, "LCCout.csv");
         ArrayList<String> lines;
         //lines = Generic_IO.readIntoArrayList_String(inputFile, 0);
-        lines = Data_ReadCSV.read(inputFile, outputDataDir, 7);
+        reader = new Data_ReadTXT(env.de);
+        lines = reader.read(inputFile, outputDataDir, 7);
 
-        PrintWriter pw  = env.env.io.getPrintWriter(outputFile, false);
+        PrintWriter pw = env.env.io.getPrintWriter(outputFile, false);
 
         File f;
         Iterator<String> ite;
@@ -110,13 +114,10 @@ public class Harriet extends Twitter_Object {
 
 //                        f = new File(inputDataDir,
 //                                "fGhQU4B3bd.html");
-
 //                        //Uncomment the following to get the data.
 //                        ArrayList<String> html;
 //                        html = getHTML(url, f);
 //                        if (html.size() > 0) {
-
-
                         if (f.length() > 0) {
 
                             try {
@@ -221,7 +222,7 @@ public class Harriet extends Twitter_Object {
 //                                                                                            if (aattribute.getValue().startsWith("Emoji")) {
 //                                                                                                ttweetText += "Emoji{";
 //                                                                                            }
-                                                                                            if(aattribute.getKey().equals("title")) {
+                                                                                            if (aattribute.getKey().equals("title")) {
                                                                                                 ttweetText += "[Emoji{" + aattribute.getValue() + "}]";
                                                                                             }
                                                                                             System.out.println("aattribute.getKey() " + aattribute.getKey());
@@ -335,13 +336,11 @@ public class Harriet extends Twitter_Object {
         }
     }
 
-    public ArrayList<String> getHTML(
-            String sURL,
-            File fileToStore) {
+    public ArrayList<String> getHTML(String sURL, File fileToStore) 
+            throws IOException {
         ArrayList<String> result = new ArrayList<>();
         URL url = null;
-        PrintWriter pw;
-        pw = env.env.io.getPrintWriter(fileToStore, false);
+        PrintWriter pw  = env.env.io.getPrintWriter(fileToStore, false);
         HttpURLConnection httpURLConnection = null;
         BufferedReader br = null;
         String line = null;

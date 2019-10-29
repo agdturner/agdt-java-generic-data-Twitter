@@ -16,6 +16,7 @@
 package uk.ac.leeds.ccg.andyt.twitter.core;
 
 import java.io.IOException;
+import uk.ac.leeds.ccg.andyt.data.core.Data_Environment;
 import uk.ac.leeds.ccg.andyt.generic.core.Generic_Environment;
 
 /**
@@ -24,10 +25,12 @@ import uk.ac.leeds.ccg.andyt.generic.core.Generic_Environment;
  */
 public class Twitter_Environment {
     
-    public transient Generic_Environment env;
+    public final transient Data_Environment de;
+    public final transient Generic_Environment env;
     
-    public Twitter_Environment() throws IOException {
-        env = new Generic_Environment();
+    public Twitter_Environment(Data_Environment de) throws IOException {
+        this.de = de;
+        env = de.env;
     }
     
 }

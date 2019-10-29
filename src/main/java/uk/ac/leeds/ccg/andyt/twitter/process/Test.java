@@ -23,6 +23,7 @@ package uk.ac.leeds.ccg.andyt.twitter.process;
 //import twitter4j.util;
 //import twitter4j.util.function.;
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -40,7 +41,8 @@ import twitter4j.TwitterFactory;
 import twitter4j.TwitterStream;
 import twitter4j.TwitterStreamFactory;
 import twitter4j.conf.ConfigurationBuilder;
-import uk.ac.leeds.ccg.andyt.data.format.Data_ReadCSV;
+import uk.ac.leeds.ccg.andyt.data.core.Data_Environment;
+import uk.ac.leeds.ccg.andyt.data.format.Data_ReadTXT;
 import uk.ac.leeds.ccg.andyt.generic.io.Generic_IO;
 
 public class Test implements StatusListener {
@@ -51,8 +53,8 @@ public class Test implements StatusListener {
      * @param args arguments doesn't take effect with this example
      * @throws TwitterException when Twitter service or network is unavailable
      */
-    public static void main(String[] args) throws TwitterException {
-
+    public static void main(String[] args) {
+        try {
         List<String> l = searchtweets();
         Iterator<String> ite;
         ite = l.iterator();
@@ -73,16 +75,19 @@ public class Test implements StatusListener {
 //        };
 //        twitterStream.addListener(listener);
 //        twitterStream.sample();
-
+        } catch (Exception ex) {
+            ex.printStackTrace(System.err);
+        }
     }
 
-    static Twitter getTwitterinstance() {
+    static Twitter getTwitterinstance() throws IOException {
         ConfigurationBuilder cb = new ConfigurationBuilder();
         File d = new File(System.getProperty("user.dir"), "data");
         d = new File(d, "twitter");
         d = new File(d, "config");
         File f = new File(d, "twitter4j.properties");
-        ArrayList<String> lines = Data_ReadCSV.read(f, f.getParentFile(), 7);
+        Data_ReadTXT reader = new Data_ReadTXT(new Data_Environment());
+        ArrayList<String> lines = reader.read(f, f.getParentFile(), 7);
         Iterator<String> ite;
         ite = lines.iterator();
         String consumerKey = ite.next().replace("oauth.consumerKey", "");
@@ -99,7 +104,7 @@ public class Test implements StatusListener {
         return twitter;
     }
 
-    public static List<String> searchtweets() throws TwitterException {
+    public static List<String> searchtweets() throws TwitterException, IOException {
 
         ArrayList<String> result;
         result = new ArrayList<>();
